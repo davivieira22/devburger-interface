@@ -91,6 +91,13 @@ input{
     background: rgba(190,200,200,0.35057773109243695) ;
 
     }
+    p{
+    font-size:18px;
+    line-height:80%;
+    color:#cf3057;
+    font-weight:600;
+    height:10px;
+    }
 
 
 `

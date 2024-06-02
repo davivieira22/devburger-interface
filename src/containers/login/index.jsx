@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
+import { api } from "../../services/api";
+import {toast} from "react-toastify";
 
 const schema = yup
   .object({
@@ -25,11 +27,15 @@ import Logo from '../../assets/logo.svg'
 
 export const Login = () => {
   const schema = yup
-  .object({
-    email: yup.string().email().required(),
-    password: yup.string().min(6).required(),
-  })
-  .required();
+    .object({
+      email: yup.string().email('digite um e-mail valido ')
+        .required('o email e obrigatorio'),
+
+      password: yup.string()
+        .min(6, 'A senha e no minimo 6 caracteres')
+        .required('digite uma senha  '),
+    })
+    .required();
   const {
     register,
     handleSubmit,
@@ -37,7 +43,33 @@ export const Login = () => {
   } = useForm({
     resolver: yupResolver(schema),
   })
-  const onSubmit = (data) => console.log(data)
+
+
+  console.log(errors)
+
+  const onSubmit = async (data) => {
+    const respose = await toast.promise( 
+       api.post('/session', {
+      email: data.email,
+      password: data.password,
+
+    }),
+    { 
+      pending: 'verificando dados ',
+      success: 'seja bem-vindo(a) ao devburger 👌',
+      error: 'Email ou senha incorreto🤯'
+    
+
+    }
+  
+  );
+    
+    
+    
+    
+   ;
+    console.log(respose)
+  }
 
 
 
@@ -56,12 +88,14 @@ export const Login = () => {
         <Form onSubmit={handleSubmit(onSubmit)}>
           <InputContainer>
             <label>Email</label>
-            <input type="email" {...register("email")}/>
+            <input type="email" {...register("email")} />
+            <p>{errors?.email?.message}</p>
           </InputContainer>
 
           <InputContainer>
             <label>Senha</label>
             <input type="password"{...register("password")} />
+            <p>{errors?.password?.message}</p>
           </InputContainer>
 
           <Button type="submit" >Entrar</Button>
