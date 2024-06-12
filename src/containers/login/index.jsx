@@ -2,14 +2,9 @@ import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import { api } from "../../services/api";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 
-const schema = yup
-  .object({
-    email: yup.string().email().required(),
-    password: yup.string().min(6).required(),
-  })
-  .required()
+
 
 
 import {
@@ -26,6 +21,10 @@ import Logo from '../../assets/logo.svg'
 
 
 export const Login = () => {
+
+
+
+
   const schema = yup
     .object({
       email: yup.string().email('digite um e-mail valido ')
@@ -48,26 +47,26 @@ export const Login = () => {
   console.log(errors)
 
   const onSubmit = async (data) => {
-    const respose = await toast.promise( 
-       api.post('/session', {
-      email: data.email,
-      password: data.password,
+    const respose = await toast.promise(
+      api.post('/session', {
+        email: data.email,
+        password: data.password,
 
-    }),
-    { 
-      pending: 'verificando dados ',
-      success: 'seja bem-vindo(a) ao devburger 👌',
-      error: 'Email ou senha incorreto🤯'
-    
+      }),
+      {
+        pending: 'verificando dados ',
+        success: 'seja bem-vindo(a) ao devburger 👌',
+        error: 'Email ou senha incorreto🤯'
 
-    }
-  
-  );
-    
-    
-    
-    
-   ;
+
+      }
+
+    );
+
+
+
+
+    ;
     console.log(respose)
   }
 

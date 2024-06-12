@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import FundoLogo from "../../assets/imgfundo.svg";
+
 import FundoLogin from "../../assets/fundologin.svg";
 
 export const Container = styled.div`
@@ -8,14 +9,16 @@ height: 100vh;
 width: 100vw;
 
 
+
 `
 export const LeftContainer = styled.div`
 background:url('${FundoLogo}');
 background-size: cover;
 background-position:center;
-height: 100%;
+height: 120%;
 width: 100%;
 max-width: 50%;
+min-height: 100%;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -31,8 +34,9 @@ background: url('${FundoLogin}');
 background-color: black;
 background-size: cover;
 background-position:center;
-height: 100%;
+
 width: 100%;
+height: 120%;
 max-width: 50%;
 display: flex;
 align-items: center;
@@ -54,12 +58,10 @@ export const Title = styled.h2`
 font-size:40px ;
 font-weight:400 ;
 line-height:40px ;
+margin-top:50px;
 text-align: center;
-color:rgba(255, 255, 255, 1);
-span{
 color:rgba(151, 88, 166, 1);
-font-family: "Road Rage", sans-serif;
-}
+
 `
 export const Form = styled.form`
 display: flex;
@@ -68,7 +70,7 @@ gap:20px;
 padding:20px;
 width: 100%;
 max-width:400px;
-
+height: 100%;
 
 `
 export const InputContainer = styled.div`
